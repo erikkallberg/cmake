@@ -1,0 +1,63 @@
+#---------------------------------------------------------------------------
+# Project related configuration options
+#---------------------------------------------------------------------------
+
+PROJECT_NAME           = "@DOC_NAME@"
+PROJECT_NUMBER         = "@DOC_VERSION@"
+OUTPUT_DIRECTORY       = "@DOC_OUTPUT_PATH@"
+
+FULL_PATH_NAMES        = NO
+
+#---------------------------------------------------------------------------
+# Configuration options related to warning and progress messages
+#---------------------------------------------------------------------------
+
+QUIET                  = YES
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = YES
+WARN_AS_ERROR          = NO
+
+#---------------------------------------------------------------------------
+# Configuration options related to the input files
+#---------------------------------------------------------------------------
+
+INPUT                  = "@DOC_README@" @DOC_INPUTS@
+USE_MDFILE_AS_MAINPAGE = "@DOC_README@"
+IMAGE_PATH             = @DOC_IMAGE_PATHS@
+
+#---------------------------------------------------------------------------
+# Configuration options related to source browsing
+#---------------------------------------------------------------------------
+
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+REFERENCES_LINK_SOURCE = YES
+
+#---------------------------------------------------------------------------
+# Configuration options related to the HTML output
+#---------------------------------------------------------------------------
+
+HTML_OUTPUT            = .
+TOC_EXPAND             = YES
+GENERATE_TREEVIEW      = YES
+
+#---------------------------------------------------------------------------
+# Configuration options related to the other outputs
+#---------------------------------------------------------------------------
+
+GENERATE_LATEX         = NO
+GENERATE_RTF           = NO
+GENERATE_MAN           = NO
+GENERATE_XML           = NO
+GENERATE_DOCBOOK       = NO
+GENERATE_AUTOGEN_DEF   = NO
+GENERATE_PERLMOD       = NO
+
+#---------------------------------------------------------------------------
+# Configuration options related to the dot tool
+#---------------------------------------------------------------------------
+
+HIDE_UNDOC_RELATIONS   = NO
+UML_LOOK               = YES
