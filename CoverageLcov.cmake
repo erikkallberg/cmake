@@ -63,7 +63,7 @@ function(add_coverage_lcov ARG_NAME ARG_VERSION)
 
         # Extract from info file only required sources
         COMMAND "${LCOV_EXECUTABLE}" -q
-            -e "${COVERAGE_INFO_FILE}" ${ARG_SOURCES}
+            -e "${COVERAGE_INFO_FILE}" ${SOURCES}
             -o "${COVERAGE_INFO_FILE}"
 
         # Generate HTML report
@@ -75,7 +75,7 @@ function(add_coverage_lcov ARG_NAME ARG_VERSION)
         # Create archive with HTML report
         COMMAND "${CMAKE_COMMAND}" -E tar "cfz" "${COVERAGE_OUTPUT_PACKAGE}" "${COVERAGE_OUTPUT_PATH}"
 
-        DEPENDS clean-gcda ${ARG_SOURCES} ${TEST_BINARIES}
+        DEPENDS clean-gcda ${SOURCES} ${TEST_BINARIES}
     )
 
     add_custom_target(${ARG_NAME}-coverage
