@@ -31,13 +31,13 @@ if(NOT TARGET coverage)
     add_custom_target(coverage)
 endif()
 
-function(add_coverage_lcov ARG_NAME ARG_VERSION)
+function(add_coverage_lcov ARG_NAME)
     cmake_parse_arguments(ARG "" ""
         "SOURCES;TEST_NAMES"
         ${ARGN}
     )
 
-    set(COVERAGE_OUTPUT_PATH    "${CMAKE_CURRENT_BINARY_DIR}/${ARG_NAME}-${ARG_VERSION}-coverage")
+    set(COVERAGE_OUTPUT_PATH    "${CMAKE_CURRENT_BINARY_DIR}/${ARG_NAME}-coverage")
     set(COVERAGE_OUTPUT_PACKAGE "${COVERAGE_OUTPUT_PATH}.tar.gz")
     set(COVERAGE_INFO_FILE      "${COVERAGE_OUTPUT_PATH}.info")
 
@@ -63,7 +63,7 @@ function(add_coverage_lcov ARG_NAME ARG_VERSION)
 
         # Extract from info file only required sources
         COMMAND "${LCOV_EXECUTABLE}" -q
-            -e "${COVERAGE_INFO_FILE}" ${SOURCES}
+            -e "${COVERAGE_INFO_FILE}" ${ARG_SOURCES}
             -o "${COVERAGE_INFO_FILE}"
 
         # Generate HTML report
@@ -75,7 +75,7 @@ function(add_coverage_lcov ARG_NAME ARG_VERSION)
         # Create archive with HTML report
         COMMAND "${CMAKE_COMMAND}" -E tar "cfz" "${COVERAGE_OUTPUT_PACKAGE}" "${COVERAGE_OUTPUT_PATH}"
 
-        DEPENDS clean-gcda ${SOURCES} ${TEST_BINARIES}
+        DEPENDS clean-gcda ${ARG_SOURCES} ${TEST_BINARIES}
     )
 
     add_custom_target(${ARG_NAME}-coverage

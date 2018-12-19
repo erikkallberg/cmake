@@ -25,13 +25,13 @@ if(NOT TARGET coverage)
     add_custom_target(coverage)
 endif()
 
-function(add_coverage_gcovr ARG_NAME ARG_VERSION)
+function(add_coverage_gcovr ARG_NAME)
     cmake_parse_arguments(ARG "" ""
         "SOURCES;TEST_NAMES"
         ${ARGN}
     )
 
-    set(COVERAGE_OUTPUT_PATH       "${CMAKE_CURRENT_BINARY_DIR}/${ARG_NAME}-${ARG_VERSION}-coverage")
+    set(COVERAGE_OUTPUT_PATH       "${CMAKE_CURRENT_BINARY_DIR}/${ARG_NAME}-coverage")
     set(COVERAGE_OUTPUT_PACKAGE    "${COVERAGE_OUTPUT_PATH}.tar.gz")
     set(COVERAGE_BRIEF_OUTPUT_PATH "${COVERAGE_OUTPUT_PATH}.html")
 
@@ -48,8 +48,8 @@ function(add_coverage_gcovr ARG_NAME ARG_VERSION)
         OUTPUT "${COVERAGE_OUTPUT_PATH}" "${COVERAGE_OUTPUT_PACKAGE}" "${COVERAGE_BRIEF_OUTPUT_PATH}"
 
         # Clean old output
-        COMMAND "${CMAKE_COMMAND}" -E remove "${COVERAGE_OUTPUT_PACKAGE}" "${COVERAGE_BRIEF_OUTPUT_PATH}"
         COMMAND "${CMAKE_COMMAND}" -E remove_directory "${COVERAGE_OUTPUT_PATH}"
+        COMMAND "${CMAKE_COMMAND}" -E remove "${COVERAGE_OUTPUT_PACKAGE}" "${COVERAGE_BRIEF_OUTPUT_PATH}"
 
         # Execute tests
         COMMAND "${CMAKE_COMMAND}" --build "${CMAKE_CURRENT_BINARY_DIR}" --target ${ARG_TEST_NAMES}
